@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Table Output & Processing</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 400px;
+      margin-bottom: 30px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Table 1: Input Data</h2>
+  <table id="table1">
+    <thead>
+      <tr>
+        <th>Index #</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody id="table1-body">
+    
+    </tbody>
+  </table>
+
+  <h2>Table 2: Processed Output</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody id="table2-body">
+    </tbody>
+  </table>
+
+  <script>
+
+    const data = {
+      A1: 41, A2: 18, A3: 21, A4: 63, A5: 2,
+      A6: 53, A7: 5, A8: 57, A9: 60, A10: 93,
+      A11: 28, A12: 3, A13: 90, A14: 39, A15: 80,
+      A16: 88, A17: 49, A18: 60, A19: 26, A20: 28
+    };
+
+  
+    const table1 = document.getElementById("table1-body");
+    for (let key in data) {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${key}</td><td>${data[key]}</td>`;
+      table1.appendChild(row);
+    }
+
+   
+    const alpha = data["A5"] + data["A20"];
+    const beta = data["A15"] / data["A7"];
+    const charlie = data["A13"] * data["A12"];
+
+
+    const table2 = document.getElementById("table2-body");
+    const resultRows = [
+      { category: "Alpha", value: alpha },
+      { category: "Beta", value: Math.floor(beta) },
+      { category: "Charlie", value: charlie }
+    ];
+
+    resultRows.forEach(row => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${row.category}</td><td>${row.value}</td>`;
+      table2.appendChild(tr);
+    });
+  </script>
+
+</body>
+</html>
